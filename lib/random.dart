@@ -4,7 +4,7 @@ import 'encryption.dart';
 class RandomSeed {
   String generateSeed() {
     var rand = new Random();
-    var codeUnits = new List.generate(30, (index) {
+    var codeUnits = new List.generate(200, (index) {
       return rand.nextInt(100);
     });
     return new String.fromCharCodes(codeUnits);
