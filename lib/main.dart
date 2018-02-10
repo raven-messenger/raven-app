@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'dart:async';
 
@@ -10,6 +11,7 @@ const String _appTitle = "Raven Messenger";
 
 final googleSignIn = new GoogleSignIn();
 final analytics = new FirebaseAnalytics();
+final auth = FirebaseAuth.instance;
 
 // solarized colors
 final Color _primary = new Color.fromARGB(255, 7, 54, 66);
@@ -169,6 +171,14 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     if (user == null) {
       await googleSignIn.signIn();
       analytics.logLogin();
+    }
+    if (await auth.currentUser() == null) {
+      GoogleSignInAuthentication credentials =
+          await googleSignIn.currentUser.authentication;
+      await auth.signInWithGoogle(
+          idToken: credentials.idToken,
+          accessToken: credentials.accessToken,
+      );
     }
   }
 }
