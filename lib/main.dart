@@ -202,12 +202,7 @@ class QRScreen extends StatefulWidget {
 class QRScreenState extends State<ChatScreen> {
 
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text("QR")),
-      body: new Column(
-        new Image
-      ),
-    );
+    return new Scaffold();
   }
 
 }
