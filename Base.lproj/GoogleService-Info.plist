@@ -36,5 +36,19 @@
 	<string>1:79504566072:ios:d8484bbfe3754e5c</string>
 	<key>DATABASE_URL</key>
 	<string>https://raven-messenger.firebaseio.com</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!-- reverse url of your client id, for example: -->
+                <string>com.googleusercontent.apps.79504566072-3ahg0461eq87rpmmcdjj13stc46tk3m4</string>
+                <!-- bundle id, for example: -->
+                <string>tk.ravenmessenger</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
