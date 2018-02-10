@@ -1,11 +1,13 @@
 import 'dart:math';
-import 'encryption.dart';
+import 'random.dart'
+
+const int SEED_LENGTH = 200;
 
 class RandomSeed {
   String generateSeed() {
     var rand = new Random();
-    var codeUnits = new List.generate(200, (index) {
-      return rand.nextInt(100);
+    var codeUnits = new List.generate(SEED_LENGTH, (index) {
+      return rand.nextInt(10000);
     });
     return new String.fromCharCodes(codeUnits);
   }
@@ -13,11 +15,6 @@ class RandomSeed {
 
 main() {
   RandomSeed r = new RandomSeed();
-  Encryption e = new Encryption();
   String seed = r.generateSeed();
   print('SEED: ' + seed);
-  String encrypted = e.xor("Hello Trevor", seed);
-  print('ENCRYPTED: ' + encrypted);
-  String decrypted = e.xor(encrypted, seed);
-  print('DECRYPTED: ' + decrypted);
 }
