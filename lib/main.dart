@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'dart:async';
 
 const String _appTitle = "Raven Messenger";
 
 final googleSignIn = new GoogleSignIn();
+final analytics = new FirebaseAnalytics();
 
 // solarized colors
 final Color _primary = new Color.fromARGB(255, 7, 54, 66);
@@ -104,6 +108,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       _messages.insert(0, message);
     });
     message.animationController.forward();
+    analytics.logEvent(name: "send_message");
   }
 
   Widget _buildTextComposer() {
@@ -163,6 +168,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     }
     if (user == null) {
       await googleSignIn.signIn();
+      analytics.logLogin();
     }
   }
 }
