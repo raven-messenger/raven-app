@@ -18,15 +18,15 @@ class Serialize{
 
 
   // Saves a Serialized string to SharedPreferences
-  setToSharedPreferences(int convoId, String serialized) async {
+  setToSharedPreferences(String user, String serialized) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(convoId.toString(), serialized);
+    prefs.setString(user, serialized);
   }
 
   // Gets a Key Object from SharedPreferences with a given ConvoID
-  getFromSharedPreferences(int i) async {
+  getFromSharedPreferences(String user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return this.decodeJSON(prefs.getString(i.toString()));
+    return this.decodeJSON(prefs.getString(user));
   }
 
 }

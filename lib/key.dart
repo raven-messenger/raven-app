@@ -1,32 +1,38 @@
+import 'encryption.dart';
+
 class Key {
   // Name of the user chatting with
   String user;
   // UUID of convo
-  int convoId;
+  int seedIndex;
   // List of the One Time Pads
   List<String> oneTimePads;
+  // Use odd numbers
+  bool odds;
 
-  Key(String user, int convoId, List<String> oneTimePads) {
-    this.user = user;
-    this.convoId = convoId;
-    this.oneTimePads = oneTimePads;
-  }
+  Key({this.user, this.seedIndex, this.oneTimePads, this.odds});
 
   Key.fromJson(Map<String, dynamic> json)
       : user = json['user'],
-        convoId = json['convoId'],
+        seedIndex = json['convoId'],
         oneTimePads = json['oneTimePads'];
 
   Map<String, dynamic> toJson() =>
       {
         'user' : user,
-        'convoId': convoId,
+        'convoId': seedIndex,
         'oneTimePads' : oneTimePads,
       };
 
   @override
   String toString(){
-    return this.user + ", " + convoId.toString() + ", " + oneTimePads.toString();
+    return this.user + ", " + seedIndex.toString() + ", " + oneTimePads.toString();
+  }
+
+  // Sends the message
+  String sendMessage(String msg){
+    Encryption encyrpt = new Encryption();
+    String cipher = encyrpt.xor(msg, oneTimePads.first);
   }
 
 
