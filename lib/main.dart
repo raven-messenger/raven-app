@@ -212,14 +212,14 @@ class ChatMessage extends StatelessWidget {
     );
   }
 }
-
-class QRScreen extends StatefulWidget {
-  @override
-  State createState() => new QRScreenState();
-}
-
-class QRScreenState extends State<ChatScreen> {
-  Widget build(BuildContext context) {
-    return new Scaffold();
-  }
-}
+//
+//class QRScreen extends StatefulWidget {
+//  @override
+//  State createState() => new QRScreenState();
+//}
+//
+//class QRScreenState extends State<ChatScreen> {
+//  Widget build(BuildContext context) {
+//    return new Scaffold();
+//  }
+//}
