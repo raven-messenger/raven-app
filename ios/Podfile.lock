@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - shared_preferences (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `/Users/ryandrew/flutter/bin/cache/artifacts/engine/ios`)
+  - shared_preferences (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: /Users/ryandrew/flutter/bin/cache/artifacts/engine/ios
+  shared_preferences:
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios
+
+SPEC CHECKSUMS:
+  Flutter: 7eb41cd1fd524b90d7f22bceb20da2c39338b089
+  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+
+PODFILE CHECKSUM: c6c865faff84807a5d35de69eb2cdbdc36b99e15
+
+COCOAPODS: 1.4.0
