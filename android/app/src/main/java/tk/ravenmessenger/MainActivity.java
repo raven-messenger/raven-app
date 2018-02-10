@@ -1,4 +1,4 @@
-package com.yourcompany.ravenmessenger;
+package tk.ravenmessenger;
 
 import android.os.Bundle;
 

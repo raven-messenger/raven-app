@@ -9,7 +9,6 @@ final Color _primary = new Color.fromARGB(255, 7, 54, 66);
 final Color _accent = new Color.fromARGB(255, 42, 161, 152);
 final Color _background = new Color.fromARGB(255, 253, 246, 227);
 
-
 final int _maxMessageLength = 100;
 
 final ThemeData _appTheme = new ThemeData(
@@ -52,30 +51,31 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
         elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
       ),
       body: new Container(
-        child: new Column(
-          children: <Widget>[
-            new Flexible(
-              child: new ListView.builder(
-                padding: new EdgeInsets.all(8.0),
-                reverse: true,
-                itemBuilder: (_, int index) => _messages[index],
-                itemCount: _messages.length,
+          padding: MediaQuery.of(context).padding,
+          child: new Column(
+            children: <Widget>[
+              new Flexible(
+                child: new ListView.builder(
+                  padding: new EdgeInsets.all(8.0),
+                  reverse: true,
+                  itemBuilder: (_, int index) => _messages[index],
+                  itemCount: _messages.length,
+                ),
               ),
-            ),
-            new Divider(height: 1.0),
-            new Container(
-              decoration: new BoxDecoration(
-                  color: Theme.of(context).cardColor),
-              child: _buildTextComposer(),
-            ),
-          ],
-        ),
+              new Divider(height: 1.0),
+              new Container(
+                decoration:
+                    new BoxDecoration(color: Theme.of(context).cardColor),
+                child: _buildTextComposer(),
+              ),
+            ],
+          ),
           decoration: Theme.of(context).platform == TargetPlatform.iOS
-              ?  new BoxDecoration(
-            border: new Border(
-              top: new BorderSide(color: Colors.grey[200]),
-            ),
-          )
+              ? new BoxDecoration(
+                  border: new Border(
+                    top: new BorderSide(color: Colors.grey[200]),
+                  ),
+                )
               : null),
     );
   }
@@ -117,24 +117,25 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                   });
                 },
                 onSubmitted: _handleSubmitted,
-                decoration: new InputDecoration.collapsed(
-                    hintText: "Send a message"),
+                decoration:
+                    new InputDecoration.collapsed(hintText: "Send a message"),
               ),
             ),
             new Container(
               margin: new EdgeInsets.symmetric(horizontal: 4.0),
-              child: Theme.of(context).platform == TargetPlatform.iOS ?
-                  new CupertinoButton(
-                    child: new Text("Send"),
-                    onPressed: _isComposing
-                    ? () => _handleSubmitted(_textController.text)
-                    : null,) :
-              new IconButton(
-                icon: new Icon(Icons.send),
-                onPressed: _isComposing ?
-                    () => _handleSubmitted(_textController.text)
-                    : null,
-              ),
+              child: Theme.of(context).platform == TargetPlatform.iOS
+                  ? new CupertinoButton(
+                      child: new Text("Send"),
+                      onPressed: _isComposing
+                          ? () => _handleSubmitted(_textController.text)
+                          : null,
+                    )
+                  : new IconButton(
+                      icon: new Icon(Icons.send),
+                      onPressed: _isComposing
+                          ? () => _handleSubmitted(_textController.text)
+                          : null,
+                    ),
             ),
           ],
         ),
@@ -152,6 +153,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
 class ChatMessage extends StatelessWidget {
   ChatMessage({this.text, this.animationController});
+
   final String text;
   final AnimationController animationController;
 
@@ -159,8 +161,7 @@ class ChatMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new SizeTransition(
       sizeFactor: new CurvedAnimation(
-          parent: animationController,
-          curve: Curves.easeOut),
+          parent: animationController, curve: Curves.easeOut),
       axisAlignment: 0.0,
       child: new Container(
           margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -169,13 +170,17 @@ class ChatMessage extends StatelessWidget {
             children: <Widget>[
               new Container(
                   margin: const EdgeInsets.only(right: 16.0),
-                  child: new CircleAvatar(child: new Text(_name[0]),)
-              ),
+                  child: new CircleAvatar(
+                    child: new Text(_name[0]),
+                  )),
               new Expanded(
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    new Text(_name, style: Theme.of(context).textTheme.subhead,),
+                    new Text(
+                      _name,
+                      style: Theme.of(context).textTheme.subhead,
+                    ),
                     new Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       child: new Text(text),
@@ -184,8 +189,7 @@ class ChatMessage extends StatelessWidget {
                 ),
               )
             ],
-          )
-      ),
+          )),
     );
   }
 }
