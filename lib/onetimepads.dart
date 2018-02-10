@@ -11,7 +11,7 @@ class OTP {
     String seednum = seedValues.join();
     var rand = new Random(int.parse(seednum));
     var codeUnits = new List.generate(OTP_LENGTH, (index) {
-      return rand.nextInt(10000);
+      return rand.nextInt(100);
     });
     return new String.fromCharCodes(codeUnits);
   }
@@ -24,7 +24,7 @@ class OTP {
     var rand = new Random(int.parse(seednum));
     for (int i = 0; i < 100; i++) {
       var codeUnits = new List.generate(OTP_LENGTH, (index) {
-        return rand.nextInt(10000);
+        return rand.nextInt(100);
       });
       otplist[i] = new String.fromCharCodes(codeUnits);
     }
