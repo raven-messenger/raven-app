@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
 
-const String _name = "Raven User";
 const String _appTitle = "Raven Messenger";
+
+final googleSignIn = new GoogleSignIn();
 
 // solarized colors
 final Color _primary = new Color.fromARGB(255, 7, 54, 66);
@@ -80,13 +83,16 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     );
   }
 
-  void _handleSubmitted(String text) {
+  Future<Null> _handleSubmitted(String text) async {
     _textController.clear();
-
     setState(() {
       _isComposing = false;
     });
+    await _ensureLoggedIn();
+    _sendMessage(text: text);
+  }
 
+  void _sendMessage({String text}) {
     ChatMessage message = new ChatMessage(
       text: text.length > 100 ? text.substring(0, _maxMessageLength) : text,
       animationController: new AnimationController(
@@ -149,6 +155,16 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       message.animationController.dispose();
     super.dispose();
   }
+
+  Future<Null> _ensureLoggedIn() async {
+    GoogleSignInAccount user = googleSignIn.currentUser;
+    if (user == null) {
+      user = await googleSignIn.signInSilently();
+    }
+    if (user == null) {
+      await googleSignIn.signIn();
+    }
+  }
 }
 
 class ChatMessage extends StatelessWidget {
@@ -164,32 +180,35 @@ class ChatMessage extends StatelessWidget {
           parent: animationController, curve: Curves.easeOut),
       axisAlignment: 0.0,
       child: new Container(
-          margin: const EdgeInsets.symmetric(vertical: 10.0),
-          child: new Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Container(
-                  margin: const EdgeInsets.only(right: 16.0),
-                  child: new CircleAvatar(
-                    child: new Text(_name[0]),
-                  )),
-              new Expanded(
-                child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new Text(
-                      _name,
-                      style: Theme.of(context).textTheme.subhead,
-                    ),
-                    new Container(
-                      margin: const EdgeInsets.only(top: 5.0),
-                      child: new Text(text),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )),
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        child: new Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            new Container(
+              margin: const EdgeInsets.only(right: 16.0),
+              child: new CircleAvatar(
+                backgroundImage:
+                    new NetworkImage(googleSignIn.currentUser.photoUrl),
+              ),
+            ),
+            new Expanded(
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text(
+                    googleSignIn.currentUser.displayName,
+                    style: Theme.of(context).textTheme.subhead,
+                  ),
+                  new Container(
+                    margin: const EdgeInsets.only(top: 5.0),
+                    child: new Text(text),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -200,9 +219,7 @@ class QRScreen extends StatefulWidget {
 }
 
 class QRScreenState extends State<ChatScreen> {
-
   Widget build(BuildContext context) {
     return new Scaffold();
   }
-
 }
