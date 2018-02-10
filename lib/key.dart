@@ -1,6 +1,9 @@
 class Key {
+  // Name of the user chatting with
   String user;
+  // UUID of convo
   int convoId;
+  // List of the One Time Pads
   List<String> oneTimePads;
 
   Key(String user, int convoId, List<String> oneTimePads) {

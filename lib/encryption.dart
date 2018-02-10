@@ -2,6 +2,7 @@ import 'dart:convert';
 
 class Encryption {
 
+  // XOR's two Strings together and returns a UTF8 encoded string back
   String xor(String msg, String otp) {
     List<int> charValuesTemp = msg.codeUnits;
     List<int> otpValues = otp.codeUnits;
