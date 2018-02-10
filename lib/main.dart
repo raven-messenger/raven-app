@@ -113,17 +113,6 @@ class ChatScreenState extends State<ChatScreen> {
       'senderName': googleSignIn.currentUser.displayName,
       'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
     });
-    ChatMessage message = new ChatMessage(
-      text: text.length > 100 ? text.substring(0, _maxMessageLength) : text,
-      animationController: new AnimationController(
-        duration: new Duration(milliseconds: 700),
-        vsync: this,
-      ),
-    );
-    setState(() {
-      _messages.insert(0, message);
-    });
-    message.animationController.forward();
     analytics.logEvent(name: "send_message");
   }
 
