@@ -25,9 +25,3 @@ class Encryption {
     return UTF8.decode(cipher);
   }
 }
-
-main() {
-  Encryption e = new Encryption();
-  print(e.xor('HelloTrevor', '123456789112234567898765432456789'));
-
-}
