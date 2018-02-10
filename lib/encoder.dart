@@ -3,6 +3,7 @@ import 'onetimepads.dart';
 import 'random.dart';
 
 class Encoder {
+  
   Encryption encryption;
 
   Encoder() {
