@@ -16,6 +16,7 @@ class Serialize{
     return JSON.encode(keyMap);
   }
 
+
   // Saves a Serialized string to SharedPreferences
   setToSharedPreferences(int convoId, String serialized) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,7 +28,9 @@ class Serialize{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return this.decodeJSON(prefs.getString(i.toString()));
   }
+
 }
+
 
 
 

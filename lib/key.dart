@@ -21,6 +21,10 @@ class Key {
         'oneTimePads' : oneTimePads,
       };
 
+  @override
+  String toString(){
+    return this.user + ", " + convoId.toString() + ", " + oneTimePads.toString();
+  }
 
 
 
