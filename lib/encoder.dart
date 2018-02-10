@@ -11,6 +11,11 @@ class Encoder {
   }
   
   String encodeMessage(int index, String msg, String otp) {
+    if(msg.length < 184){
+      for(int i = msg.length; i < 184; i++){
+        msg += " ";
+      }
+    }
     String enc = this.encryption.xor(msg + new DateTime.now().microsecondsSinceEpoch.toString(), otp);
     return index.toString().padLeft(2, "0") + enc;
   }
@@ -21,8 +26,8 @@ class Encoder {
 
   DateTime getTime(String msg, String otp) {
     String newmsg = msg.substring(2, msg.length);
-
-    int timecount = int.parse(this.encryption.xor(newmsg, otp).substring(newmsg.length - 16, newmsg.length));
+    int timecount = int.parse(this.encryption.xor(newmsg, otp).substring
+      (newmsg.length - 16, newmsg.length - 1));
     DateTime time = new DateTime.fromMicrosecondsSinceEpoch(timecount);
     return time;
   }
