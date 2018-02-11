@@ -28,11 +28,11 @@ void main() {
 class RavenMessengerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => new MaterialApp(
-    title: appTitle,
-    theme: _appTheme,
-    color: _primary,
-    home: new HomePage(),
-  );
+        title: appTitle,
+        theme: _appTheme,
+        color: _primary,
+        home: new HomePage(),
+      );
 }
 
 class HomePage extends StatefulWidget {
@@ -59,7 +59,6 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             new PageView.builder(
               physics: new NeverScrollableScrollPhysics(),
-//              physics: new AlwaysScrollableScrollPhysics(),
               controller: _controller,
               itemBuilder: (BuildContext context, int index) {
                 return _pages[index % _pages.length];
