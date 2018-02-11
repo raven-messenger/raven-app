@@ -5,6 +5,8 @@ class RavenNavBar extends BottomNavigationBar {
   BuildContext context;
   PageController pageController;
 
+  //TODO: navbar doesn't change selected item
+
   RavenNavBar(this.context, this.pageController)
       : super(
           items: [

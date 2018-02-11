@@ -6,7 +6,7 @@ import 'main.dart';
 
 
 
-class CodeScanner extends State<ChatScreen>{
+class CodeScanner extends HomePageState {
   String barcode = "";
 
   @override
