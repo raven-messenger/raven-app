@@ -20,7 +20,11 @@ final currentConfig = new CurrentConfig(googleSignIn);
 final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
 User user;
-OneTimePad otp = new OneTimePad(RandomSeed.generateSeed());
+// OneTimePad otp = new OneTimePad(RandomSeed.generateSeed());
+OneTimePad otp = new OneTimePad("2091739827189321983781237892173891732" +
+    "281938912389217389271839127382178932189372189389127389213" +
+    "328193782173821738912738921783971289372189312738921783921731");
+
 // List<User> recipients;
 
 class ChatScreen extends StatefulWidget {
