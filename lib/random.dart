@@ -1,19 +1,17 @@
 import 'dart:math';
 
-const int SEED_LENGTH = 200;
+const int SEED_LENGTH = 100;
 
 class RandomSeed {
-  String generateSeed() {
+  static String generateSeed() {
     var rand = new Random();
-    var codeUnits = new List.generate(SEED_LENGTH, (index) {
-      return rand.nextInt(100);
-    });
+    var codeUnits =
+        new List<int>.generate(SEED_LENGTH, (_) => new Random().nextInt(100));
     return new String.fromCharCodes(codeUnits);
   }
 }
 
 main() {
-  RandomSeed r = new RandomSeed();
-  String seed = r.generateSeed();
+  String seed = RandomSeed.generateSeed();
   print('SEED: ' + seed);
 }
