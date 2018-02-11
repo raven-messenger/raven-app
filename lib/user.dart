@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'serialize.dart';
 import 'otp.dart';
+import 'random.dart';
 
 const int _separator = 100;
 
@@ -9,21 +10,24 @@ const int _msgLength = 184;
 const int _otpLength = 200;
 
 class User implements ISerializable<User> {
-  final String uid;
-  final String sendingSeed;
-  final int theirSeedIndex;
 
-  User(this.uid, this.sendingSeed, this.theirSeedIndex);
+  final String uid;
+  String seed;
+  int seedIndex;
+
+  User(this.uid, this.seed, this.seedIndex);
+
+  factory User.brandNew(String uid) {
+    return new User(uid, RandomSeed.generateSeed(), 0);
+  }
 
 //  factory User.fromImg(Image i) {
 //    String qrContents = "";
 //    return new fromMap(JSON.decode(qrContents));
 //  }
 
-  Image render() {}
-
   getNthOTP(int n) {
-    return generateListOTP(sendingSeed).elementAt(n);
+    return generateListOTP(seed).elementAt(n);
   }
 
   List<OneTimePad> generateListOTP(String seed) {
@@ -43,15 +47,15 @@ class User implements ISerializable<User> {
   @override
   Map<String, dynamic> toMap() => {
         "uid": this.uid,
-        "sendingSeed": this.sendingSeed,
-        "theirSeedIndex": this.theirSeedIndex,
+        "seed": this.seed,
+        "seedIndex": this.seedIndex,
       };
 
   @override
   User fromMap(Map<String, dynamic> m) => new User(
         m["uid"],
-        m["sendingSeed"],
-        m["theirSeedIndex"],
+        m["seed"],
+        m["seedIndex"],
       );
 }
 

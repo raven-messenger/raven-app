@@ -2,15 +2,13 @@ package tk.ravenmessenger;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import android.os.Environment;
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "tk.ravenmessenger/genQR";

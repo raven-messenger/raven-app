@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'user.dart';
 
+import 'serialize.dart';
 import 'constants.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,12 +14,26 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'main.dart';
 
 final googleSignIn = new GoogleSignIn();
+final currentConfig = new CurrentConfig(googleSignIn);
 final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
+User user;
+List<User> recipients;
 
 class ChatScreen extends StatefulWidget {
   @override
-  State createState() => new ChatScreenState();
+  State createState() {
+    getUser();
+    new ChatScreenState();
+  }
+
+  Future<User> getUser() async {
+    user = await currentConfig.getUser();
+  }
+
+  Future<List<User>> getRecipients() async {
+    recipients = await currentConfig.getRecipients();
+  }
 }
 
 class ChatScreenState extends State<ChatScreen> {
@@ -25,7 +41,6 @@ class ChatScreenState extends State<ChatScreen> {
   bool _isComposing = false;
 
   final reference = FirebaseDatabase.instance.reference().child('messages');
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,35 +65,62 @@ class ChatScreenState extends State<ChatScreen> {
             ),
             new Divider(height: 1.0),
             new Container(
-              decoration:
-              new BoxDecoration(color: Theme.of(context).cardColor),
+              decoration: new BoxDecoration(color: Theme.of(context).cardColor),
               child: _buildTextComposer(),
             ),
           ],
         ),
         decoration: Theme.of(context).platform == TargetPlatform.iOS
             ? new BoxDecoration(
-          border: new Border(
-            top: new BorderSide(color: Colors.grey[200]),
-          ),
-        )
+                border: new Border(
+                  top: new BorderSide(color: Colors.grey[200]),
+                ),
+              )
             : null);
   }
 
   Future<Null> _handleSubmitted(String text) async {
+    User desiredRecipient;
+    List<Widget> options = new List<Widget>.generate(
+      recipients.length,
+      (index) {
+        return new SimpleDialogOption(
+          onPressed: () {
+            desiredRecipient = recipients.elementAt(index);
+          },
+          child: new Text(recipients.elementAt(index).uid),
+        );
+      },
+    );
+    showDialog(
+      context: context,
+      child: new SimpleDialog(
+        title: const Text("Select a recipient"),
+        children: options,
+      ),
+    );
     _textController.clear();
     setState(() {
       _isComposing = false;
     });
     await _ensureLoggedIn();
-    _sendMessage(text: text);
+    _sendMessage(
+        desiredRecipient,
+      text,
+      desiredRecipient.seedIndex++,
+      0
+    );
   }
 
-  void _sendMessage({String text}) {
-    reference.push().set({
-      'text': text,
+  void _sendMessage(User recipient, String text, int seedIndex, int otpIndex) {
+    DatabaseReference tableReference =
+        FirebaseDatabase.instance.reference().child(recipient.uid);
+    tableReference.push().set({
       'senderName': googleSignIn.currentUser.displayName,
       'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
+      'text': text,
+      'seedIndex': seedIndex,
+      'otpIndex': otpIndex,
     });
     analytics.logEvent(name: "send_message");
   }
