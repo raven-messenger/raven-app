@@ -28,6 +28,7 @@ end
 
 target 'Runner' do
   pod 'Firebase/Core'
+  #use_frameworks!
   # Flutter Pods
   generated_xcode_build_settings = parse_KV_file("./Flutter/Generated.xcconfig")
   if generated_xcode_build_settings.empty?

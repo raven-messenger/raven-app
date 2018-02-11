@@ -18,7 +18,14 @@ final currentConfig = new CurrentConfig(googleSignIn);
 final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
 User user;
+<<<<<<< Updated upstream
+// OneTimePad otp = new OneTimePad(RandomSeed.generateSeed());
+OneTimePad otp = new OneTimePad("booleanuihad2930190219021391");
+
+// List<User> recipients;
+=======
 List<User> recipients;
+>>>>>>> Stashed changes
 
 class ChatScreen extends StatefulWidget {
   @override
