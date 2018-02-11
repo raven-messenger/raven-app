@@ -10,8 +10,3 @@ class RandomSeed {
     return new String.fromCharCodes(codeUnits);
   }
 }
-
-main() {
-  String seed = RandomSeed.generateSeed();
-  print('SEED: ' + seed);
-}

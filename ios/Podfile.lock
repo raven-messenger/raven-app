@@ -87,32 +87,32 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
-  - firebase_analytics (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-0.0.4/ios`)
-  - firebase_auth (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.2.0/ios`)
-  - firebase_database (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_database-0.0.12/ios`)
-  - firebase_storage (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.5/ios`)
-  - Flutter (from `/Users/brycethuilot/GitHub/flutter/bin/cache/artifacts/engine/ios`)
-  - google_sign_in (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.3.1/ios`)
-  - image_picker (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/image_picker-0.1.1/ios`)
-  - shared_preferences (from `/Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios`)
+  - firebase_analytics (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-0.0.4/ios`)
+  - firebase_auth (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.2.0/ios`)
+  - firebase_database (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_database-0.0.12/ios`)
+  - firebase_storage (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.5/ios`)
+  - Flutter (from `/Users/ryandrew/flutter/bin/cache/artifacts/engine/ios`)
+  - google_sign_in (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.3.1/ios`)
+  - image_picker (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/image_picker-0.1.1/ios`)
+  - shared_preferences (from `/Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios`)
 
 EXTERNAL SOURCES:
   firebase_analytics:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-0.0.4/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-0.0.4/ios
   firebase_auth:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.2.0/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.2.0/ios
   firebase_database:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_database-0.0.12/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_database-0.0.12/ios
   firebase_storage:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.5/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/firebase_storage-0.0.5/ios
   Flutter:
-    :path: /Users/brycethuilot/GitHub/flutter/bin/cache/artifacts/engine/ios
+    :path: /Users/ryandrew/flutter/bin/cache/artifacts/engine/ios
   google_sign_in:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.3.1/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/google_sign_in-0.3.1/ios
   image_picker:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/image_picker-0.1.1/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/image_picker-0.1.1/ios
   shared_preferences:
-    :path: /Users/brycethuilot/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios
+    :path: /Users/ryandrew/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.3.2/ios
 
 SPEC CHECKSUMS:
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'user.dart';
 
+import 'otp.dart';
+import 'random.dart';
 import 'serialize.dart';
 import 'constants.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -18,22 +20,26 @@ final currentConfig = new CurrentConfig(googleSignIn);
 final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
 User user;
-List<User> recipients;
+OneTimePad otp = new OneTimePad(RandomSeed.generateSeed());
+// List<User> recipients;
 
 class ChatScreen extends StatefulWidget {
   @override
   State createState() {
     getUser();
-    new ChatScreenState();
+    return new ChatScreenState();
   }
 
   Future<User> getUser() async {
     user = await currentConfig.getUser();
+    return user;
   }
-
+  /*
   Future<List<User>> getRecipients() async {
     recipients = await currentConfig.getRecipients();
+    return recipients;
   }
+  */
 }
 
 class ChatScreenState extends State<ChatScreen> {
@@ -81,6 +87,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Future<Null> _handleSubmitted(String text) async {
     User desiredRecipient;
+    /*
     List<Widget> options = new List<Widget>.generate(
       recipients.length,
       (index) {
@@ -99,28 +106,31 @@ class ChatScreenState extends State<ChatScreen> {
         children: options,
       ),
     );
+    */
     _textController.clear();
     setState(() {
       _isComposing = false;
     });
     await _ensureLoggedIn();
     _sendMessage(
-        desiredRecipient,
+        //desiredRecipient,
       text,
-      desiredRecipient.seedIndex++,
+      0,
       0
     );
   }
 
-  void _sendMessage(User recipient, String text, int seedIndex, int otpIndex) {
+  void _sendMessage(//User recipient,
+  String text, int seedIndex, int otpIndex) {
+
     DatabaseReference tableReference =
-        FirebaseDatabase.instance.reference().child(recipient.uid);
+        FirebaseDatabase.instance.reference().child("messages");
     tableReference.push().set({
       'senderName': googleSignIn.currentUser.displayName,
       'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
-      'text': text,
-      'seedIndex': seedIndex,
-      'otpIndex': otpIndex,
+      'text': otp.encodeMessage(text),
+//      'seedIndex': seedIndex,
+//      'otpIndex': otpIndex,
     });
     analytics.logEvent(name: "send_message");
   }
@@ -222,7 +232,8 @@ class ChatMessage extends StatelessWidget {
                     ),
                     new Container(
                       margin: const EdgeInsets.only(top: 5.0),
-                      child: new Text(snapshot.value['text']),
+                      child: new Text(otp.decodeMessage(snapshot
+                          .value['text'])),
                     ),
                   ],
                 ),
