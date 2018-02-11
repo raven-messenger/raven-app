@@ -32,7 +32,7 @@ class Key {
   // Sends the message
   String sendMessage(String msg){
     Encryption encyrpt = new Encryption();
-    String cipher = encyrpt.xor(msg, oneTimePads.first);
+    return encyrpt.xor(msg, oneTimePads.first);
   }
 
 
