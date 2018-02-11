@@ -11,7 +11,7 @@ class QRScanScreen extends StatefulWidget {
 }
 
 class QRScanScreenState extends State<QRScanScreen> {
-  String futureString = "";
+  String QRString = "";
 
   @override
   initState() {
@@ -33,7 +33,7 @@ class QRScanScreenState extends State<QRScanScreen> {
                       onPressed: scan, child: new Text("Scan")),
                   padding: const EdgeInsets.all(8.0),
                 ),
-                new Center(child: new Text(this.futureString)),
+                new Center(child: new Text(this.QRString)),
               ],
             ),
           )),
@@ -49,27 +49,7 @@ class QRScanScreenState extends State<QRScanScreen> {
         .setExecuteAfterPermissionGranted(true) // default true
         .scan();
     setState(() {
-      this.futureString = str;
+      this.QRString = str;
     });
   }
 }
-
-/*
-  Future scan() async {
-        try {
-          String barcode = await BarcodeScanner.scan();
-          setState(() => this.barcode = barcode);
-        } on PlatformException catch (e) {
-          if (e.code == BarcodeScanner.CameraAccessDenied) {
-            setState(() {
-              this.barcode = 'The user did not grant the camera permission!';
-            });
-          } else {
-            setState(() => this.barcode = 'Unknown error: $e');
-          }
-        } on FormatException{
-          setState(() => this.barcode = 'null (User returned using the "back"-button before scanning anything. Result)');
-        } catch (e) {setState(() => this.barcode = 'Unknown error: $e');
-        }
-      }
-  } */

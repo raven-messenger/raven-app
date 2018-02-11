@@ -34,12 +34,11 @@ class ChatScreen extends StatefulWidget {
     user = await currentConfig.getUser();
     return user;
   }
-  /*
-  Future<List<User>> getRecipients() async {
-    recipients = await currentConfig.getRecipients();
-    return recipients;
-  }
-  */
+
+//  Future<List<User>> getRecipients() async {
+//    recipients = await currentConfig.getRecipients();
+//    return recipients;
+//  }
 }
 
 class ChatScreenState extends State<ChatScreen> {
@@ -86,41 +85,41 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   Future<Null> _handleSubmitted(String text) async {
-    User desiredRecipient;
-    /*
-    List<Widget> options = new List<Widget>.generate(
-      recipients.length,
-      (index) {
-        return new SimpleDialogOption(
-          onPressed: () {
-            desiredRecipient = recipients.elementAt(index);
-          },
-          child: new Text(recipients.elementAt(index).uid),
-        );
-      },
-    );
-    showDialog(
-      context: context,
-      child: new SimpleDialog(
-        title: const Text("Select a recipient"),
-        children: options,
-      ),
-    );
-    */
+//    User desiredRecipient;
+//
+//    List<Widget> options = new List<Widget>.generate(
+//      recipients.length,
+//      (index) {
+//        return new SimpleDialogOption(
+//          onPressed: () {
+//            desiredRecipient = recipients.elementAt(index);
+//          },
+//          child: new Text(recipients.elementAt(index).uid),
+//        );
+//      },
+//    );
+//    showDialog(
+//      context: context,
+//      child: new SimpleDialog(
+//        title: const Text("Select a recipient"),
+//        children: options,
+//      ),
+//    );
+
     _textController.clear();
     setState(() {
       _isComposing = false;
     });
     await _ensureLoggedIn();
     _sendMessage(
-        //desiredRecipient,
+        // desiredRecipient,
       text,
       0,
       0
     );
   }
 
-  void _sendMessage(//User recipient,
+  void _sendMessage(// User recipient,
   String text, int seedIndex, int otpIndex) {
 
     DatabaseReference tableReference =
@@ -129,8 +128,8 @@ class ChatScreenState extends State<ChatScreen> {
       'senderName': googleSignIn.currentUser.displayName,
       'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
       'text': otp.encodeMessage(text),
-//      'seedIndex': seedIndex,
-//      'otpIndex': otpIndex,
+      'seedIndex': seedIndex,
+      'otpIndex': otpIndex,
     });
     analytics.logEvent(name: "send_message");
   }
