@@ -1,9 +1,6 @@
-import 'dart:async';
-
-//import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 
 class QRScanScreen extends StatefulWidget {
   @override
@@ -16,6 +13,29 @@ class QRScanScreenState extends State<QRScanScreen> {
   @override
   Widget build(BuildContext context) {
 //    scan();
+    FlutterBlue flutterBlue = FlutterBlue.instance;
+    /// Start scanning
+    var scanSubscription = flutterBlue.scan().listen((scanResult) {
+      print("LOCALNAME: " + scanResult.advertisementData.localName);
+      print(scanResult);
+      ScanResult sr = scanResult;
+      print("NAME: " + sr.device.name);
+      // do something with scan result
+    });
+
+    /// Stop scanning
+    scanSubscription.cancel();
+
+//    /// Create a connection to the device
+//    var deviceConnection = flutterBlue.connect(device).listen((s) {
+//      if(s == BluetoothDeviceState.connected) {
+//        // device is connected, do something
+//      }
+//    });
+//
+//    /// Disconnect from device
+//    deviceConnection.cancel();
+
     return new Container(
       child: new Text(this.barcode),
     );
