@@ -43,6 +43,7 @@ class RavenMessengerApp extends StatelessWidget {
       color: _primary,
     );
   }
+
 }
 
 class ChatScreen extends StatefulWidget {
