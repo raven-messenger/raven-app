@@ -16,7 +16,6 @@ class QRScanScreenState extends State<QRScanScreen> {
   @override
   Widget build(BuildContext context) {
 //    scan();
-  RawImage
     return new Container(
       child: new Text(this.barcode),
     );
