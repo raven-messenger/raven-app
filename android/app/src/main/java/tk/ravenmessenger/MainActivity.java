@@ -36,7 +36,7 @@ public class MainActivity extends FlutterActivity {
 
     String genSaveQR(String fileName, String value) {
         Bitmap bmap = QrCode.create(value);
-        String file_path = Environment.getDataDirectory().getAbsolutePath() +
+        String file_path = getFilesDir().getAbsolutePath() +
                 "/" + fileName;
         FileOutputStream out = null;
         try {
