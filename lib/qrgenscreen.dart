@@ -20,7 +20,7 @@ class QRGenScreenState extends State<QRGenScreen> {
   Future<Null> _genQR() async {
     String fileName = "test.png";
     try {
-      Map<String, dynamic> args = {
+      Map<String, String> args = {
         "fileName": fileName,
         "value": "testqr",
       };
