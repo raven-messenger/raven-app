@@ -9,7 +9,9 @@ A messenger application for iOS and Android that implements perfect secrecy.
 
 ### Screenshots
 <img src="img/screenshot1.jpeg" alt="screenshot" height="400">
+
 ---
+
 *Made for [HackBeanpot][hackbeanpot] 2018 | [Raven Team](https://github.com/orgs/raven-messenger/people)*
 
 [hackbeanpot]: https://hackbeanpot.com/
