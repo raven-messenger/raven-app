@@ -20,24 +20,22 @@ class QRScanScreenState extends State<QRScanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-          appBar: new AppBar(
-            title: new Text('Barcode Scanner Example'),
-          ),
-          body: new Center(
+    return new Center(
             child: new Column(
               children: <Widget>[
                 new Container(
-                  child: new MaterialButton(
-                      onPressed: scan, child: new Text("Scan")),
-                  padding: const EdgeInsets.all(8.0),
-                ),
+                  child: Theme.of(context).platform == TargetPlatform.iOS
+                      ? new CupertinoButton(
+                    child: new Text("Scan"),
+                    onPressed:  scan,)
+                      : new IconButton(
+                      icon: new Icon(Icons.send),
+                      onPressed:  scan,)),
+
                 new Center(child: new Text(this.QRString)),
               ],
             ),
-          )),
-    );
+          );
   }
 
   Future<Null> scan() async {
